@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-d
  
 
 import Login from "./components/login"
- 
+import Home from "./pages/home"
+import CreateUser from "./pages/createUser"
+import SendEmail from "./pages/sendEmail"
 
 function App() {
   
@@ -16,7 +18,9 @@ function App() {
         <Routes>
         
           <Route path='/' element={<Login/>} />
-          
+          <Route path='/home' element={<Home/>} />
+          <Route path='/createUser' element={<CreateUser/>} />
+          <Route path='/sendEmail' element={<SendEmail/>} />
   
         </Routes>
 
