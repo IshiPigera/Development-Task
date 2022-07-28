@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import validator from 'validator'
-import AdminNavbar from '../components/AdminNavbar/adminNavbar';
+import AdminNavbar from '../../components/AdminNavbar/adminNavbar';
 import Swal from 'sweetalert2'
 import emailjs from "emailjs-com";
 
