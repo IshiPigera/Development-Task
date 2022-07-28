@@ -1,0 +1,194 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+ 
+.notes-page{
+  width: 100%;
+  min-height: 100vh;
+  color: #fff;
+}
+.notes-page header{
+  height: 70px;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.notes-page header ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 0 25px;
+  font-size: 20px;
+}
+
+.notes-page section{
+  width: 100%;
+  box-shadow: 0 0 5px rgb(7,25,63);
+  padding: 20px 0;
+}
+.note-wrapper{
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
+}
+.card{
+  width: 1000px;
+  background: rgb(78, 119, 209);
+  padding: 10px;
+  position: relative;
+  color: #000;
+  margin: 15px;
+  cursor: pointer;
+}
+.card .editbutton{
+  font-weight: bold;
+  padding: 10px 22px 10px 22px ;
+  max-width: calc((100%) - 700px);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #053814;
+  box-sizing: border-box;
+}
+.card .delbutton{
+  height: 42px;
+  width : 125px;
+  background-Color: rgb(158, 7, 7);
+  color: white;
+  text-Decoration: none;
+  font-Weight: bold; 
+  font-Size: 17px;
+  border: none; 
+  outline: none;
+
+}
+.card h4{
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card .text-wrapper{
+  width: 100%;
+  height: 150px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  margin: 10px 0;
+  color: #fff9;
+}
+.card .date{
+  font-weight: 800;
+  padding: 10px 30px;
+  max-width: calc((100%) - 700px);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #1d1f30;
+  box-sizing: border-box;
+}
+.card-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* ******* Create Note******************* */
+.create-note{
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  padding: 30px;
+  background: teal;
+}
+.create-note h2{
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.create-note .row{
+  width: 100%;
+  margin: 10px 0;
+}
+.create-note input,
+.create-note button{
+  width: 100%;
+  height: 40px;
+  padding:  0 5px;
+}
+.create-note label{
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.create-note textarea{
+  width: 100%;
+  resize: none;
+  padding: 0 5px;
+}
+.create-note button{
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: rgb(7,25,63);
+}
+@media (max-width: 500px){
+  .create-note{
+    padding: 15px;
+    border: 5px solid #ccc;
+  }
+}
+
+/* *********Login / Register******* */
+.login-page{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+.login input,
+.register input{
+  margin-bottom: 15px;
+}
+.login,
+.register{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: teal;
+  max-width: 720px;
+  max-height: 2020px;
+}
+.login-page h2,
+.login-page h3{
+  color: #fff8;
+}
+.login-page h3{
+    text-align: center;
+    margin-top: 15px;
+}
+.login-page p{
+  margin: 10px 0;
+  color: white;
+}
+.login-page span:hover{
+  color: orange;
+  cursor: pointer;
+}
