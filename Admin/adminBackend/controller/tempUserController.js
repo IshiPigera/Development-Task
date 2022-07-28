@@ -48,25 +48,8 @@ const getATempUser=async(req,res)=>{
 
 }
 
-//Find any user with same Email
-const validateEmail=async(req,res)=>{
-    let{ email} = req.body
-    tempUser.findOne({email:email},(err,tempUser)=>{
-        if(err){
-            return res.status(400).json({success:false,err});
-        }
-
-        return res.status(200).json({
-            success:true,
-            tempUser
-        });
-    });
-
-}
-
 module.exports = {
     postUser,
     getUser,
     getATempUser,
-    validateEmail
 }

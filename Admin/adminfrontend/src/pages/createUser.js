@@ -36,6 +36,10 @@ export default class createUser extends Component {
     })
   }
 
+  //   handleInputSelect=(e)=>{
+  //     this.setState({category:e.target.value})
+  //     console.log("category",e.target.value)
+  // }
 
   /** */
   formValidation = () => {
@@ -44,13 +48,25 @@ export default class createUser extends Component {
     const errorE1 = {};
     const errorP1 = {};
 
+    //   if(submissionId.trim().length<3){
+    //       error["submissionCodeLength"] = "Submission code must be in length 3 or higher";
+    //       isValid=false;
+    //   }
+
+    //   if(!submissionId.match(/^[A-Z]{1,}[0-9]{3,}$/)){
+    //       error["submissionCodePattern"]="Code should include at least 1 uppercase letters and at least 3 numbers";
+    //       isValid=false;
+    //   }
 
     if (!email) {
       errorE1["emailInput"] = "email Field is EMPTY!";
       isValid = false;
     }
 
-     
+    //   if(!topic.match(/^[a-z A-Z]*$/)){
+    //       errorsN["topicInputPattern"] = "topic must contain characters only!";
+    //       isValid=false;
+    //   }
 
     if (!password) {
       errorP1["descriptionInput"] = "password Field is EMPTY!";
@@ -67,7 +83,7 @@ export default class createUser extends Component {
     console.log("data");
     const { email, password } = this.state;
     const data = {
-      "link": "http://localhost:8080/admin/user/create",
+      "link": "http://localhost:3001/",
       "username": email,
       "password": password,
       "email": email
@@ -108,13 +124,16 @@ export default class createUser extends Component {
 
     console.log(data);
 
-    axios.post("http://localhost:8080/admin/user/create", data).then((res) => {
-      if (res.data.success) {
+    axios.post("http://localhost:8080/admin/studentRegister/post", data).then((res) => {
+      console.log("resssss",res)
+      if (res.status == 200) {
         alert("User created Successfully!")
 
         // window.location.href ='/home';
         this.setState(
           {
+            // email: "",
+            // password: "",
             userResponse: true
           }
         )
@@ -181,7 +200,7 @@ export default class createUser extends Component {
     const unique_id = uuid();
     const password = unique_id.slice(1, 8)
 
-    this.setState({ password: password });
+    this.setState({ password: "temp"+password });
   }
 
 
