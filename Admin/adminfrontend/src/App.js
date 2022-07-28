@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-d
 
 import Login from "./components/login"
 import Home from "./pages/home"
-import CreateUser from "./pages/createUser"
+import CreateUser from "./pages/createUser/createUser"
  
 
 function App() {
