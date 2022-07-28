@@ -49,7 +49,7 @@ export default function EditNote({match}) {
                     headers: {Auth: token}
                 })
                 
-                return history.push('/')
+                history.push('/')
             }
         } catch (err) {
             window.location.href = "/";
@@ -78,7 +78,7 @@ export default function EditNote({match}) {
                     name="date" onChange={onChangeInput} />
                 </div>
 
-                <button type="submit">Save</button>
+                <button type="submit"><a href="/">Save</a></button>
             </form>
         </div>
     )
