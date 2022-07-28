@@ -1,14 +1,10 @@
 import React, {useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { Button } from './Button';
-import './adminNavbar.css';
-import logo from "../../images/logo11.png"
+import './adminNavbar.css'; 
 
 function AdminNavbar() {
     const [click,setClick]=useState(false);
     const [button, setButton] = useState(true)
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false)
 
     const showButton = () =>{
         if(window.innerWidth<= 960){
@@ -17,74 +13,19 @@ function AdminNavbar() {
             setButton(true);
         }
     };
-useEffect(() =>{
-    showButton();
-}, []);
-
-
-const [logStatus, setLoginStatus] = useState(false);
-    const [loguser, setLogUser] = useState("");
-
-
-    useEffect(() => {
-        console.log("sessionStorage.getItem('LogStatus')",
-            sessionStorage.getItem('LogStatus'));
-
-        const logStatus = sessionStorage.getItem('LogStatus') === 'true' ? true : false
-        const logUser = sessionStorage.getItem('Loguser')
-        console.log("zzz", logStatus)
-        setLoginStatus(logStatus)
-        setLogUser(logUser)
-
-
-
-
-    });
-    window.addEventListener('resize', showButton);
+ 
+ 
     return (
         <>
          <nav className="navbar">
          <div className='navbar-container'>
             
-         <Link to="/home" className="navbar-logo" onClick = {closeMobileMenu}>
-               ADMIN</Link>
-
-            
+         <Link to="/home" className="navbar-logo">
+               ADMIN</Link>        
               
-            <div className = 'menu-icon' onClick= {handleClick}> 
-            </div>
-
             <ul className ={click ? 'nav-menu active' : 'nav-menu'}>
-{/* 
-             
-            <li className='nav-item'>
-                <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                    Notifications
-                </Link>
-            </li>
-            <li className='nav-item'>
-                <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                My profile
-                </Link>
-            </li> */}
-
-            {/* {logStatus ?
-                                <><li className='nav-item'><p  className='nav-links' style={{ "color": "#0d6efd" }}>{loguser}</p></li>
-                                </>
-                               :
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/login">Login</a>
-                                </li>
-
-                            } */}
-
- 
-            </ul>
-            {/* {button &&  <a href='/home'><Button buttonStyle = 'btn--outline'> LOG OUT</Button> </a>} */}
-
-              
-             </div>
-            
+            </ul>                
+             </div>           
              </nav>   
         </>
     );

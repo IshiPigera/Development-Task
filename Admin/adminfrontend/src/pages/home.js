@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AdminNavbar from '../components/AdminNavbar/adminNavbar';
-// import Footer from '../components/Footer/Footer';
 import axios from 'axios'
 
 export default class Home extends Component {
@@ -9,44 +8,55 @@ export default class Home extends Component {
         super(props);
 
         this.state={
-            tempUsers:[]
+            students:[]
         };
     }
 
     componentDidMount(){
-        this.retrieveTempUsers();   
+        this.retrieveStudents();   
     }
 
-    retrieveTempUsers(){
-        axios.get("http://localhost:8080/admin/user/get").then(res=>{
+    retrieveStudents(){
+        axios.get("http://localhost:8080/admin/studentRegister/get").then(res=>{
             if(res.data.success){
                 this.setState({
-                    tempUsers:res.data.existingTempUsers
+                    students:res.data.existingStudents
                 });
-                console.log(this.state.tempUsers)
+                console.log(this.state.students)
             }
         });
     }
 
+    onDelete = (id) => {
+      if (window.confirm("Do you want to remove this student?")) {
+        axios.delete(`http://localhost:8080/admin/studentRegister/delete/${id}`).then((res) => {
+          alert("Student removed Successfully!");
+          this.retrieveStudents();
+        });
+      }
+    };
+
 
        //Search bar
-  filterData(tempUsers, searchKey) {
-    const result = tempUsers.filter(
+  filterData(students, searchKey) {
+    const result = students.filter(
       (item) =>
-        item.tempUserId.toLowerCase().includes(searchKey) || //toLowerCase() helps to filter the data using the lowercase letters.
-        item.tempUserId.toUpperCase().includes(searchKey)  //toUpperCase() helps to filter the data using the Uppercase letters.
-    );
+        item.studentId.toLowerCase().includes(searchKey) || //toLowerCase() helps to filter the data using the lowercase letters.
+        item.studentId.toUpperCase().includes(searchKey) || //toUpperCase() helps to filter the data using the Uppercase letters.
+        item.studentName.toUpperCase().includes(searchKey) ||
+        item.studentName.toUpperCase().includes(searchKey) 
+        );
 
-    this.setState({ tempUsers: result });
+    this.setState({ students: result });
   }
   
 
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8080/admin/user/get").then((res) => {
+    axios.get("http://localhost:8080/admin/studentRegister/get").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.existingTempUsers, searchKey);
+        this.filterData(res.data.existingStudents, searchKey);
       }
     });
   };
@@ -86,14 +96,12 @@ export default class Home extends Component {
               USER LIST
             </h4>
      
-          <ul> 
+           
           <button className='btn btn-success' style={{width:'200px',marginLeft:'500px',marginTop:"46px",backgroundColor:'rgba(35, 84, 137 , 1)',height:'auto'}}><a href='/createUser' style={{textDecoration:'none',color:'white', fontWeight:'bold'}}>
                         CREATE A USER
           </a></button>
-          <button className='btn btn-success' style={{width:'200px',marginLeft:'500px',marginTop:"46px",backgroundColor:'rgba(35, 84, 137 , 1)',height:'auto'}}><a href='/sendEmail' style={{textDecoration:'none',color:'white', fontWeight:'bold'}}>
-                        SEND EMAIL TO USERS
-          </a></button>
-          </ul>
+           
+          
           <div>
             <input
               className="form-control"
@@ -124,33 +132,32 @@ export default class Home extends Component {
                 }}>
                     <thead style={{backgroundColor:'rgba(1, 11, 67 )',color:'white'}}>
                         <tr>
-                            <th scope="row">#</th>   
-                             
+                            <th scope="row">#</th>  
+                            <th scope="row">STUDENT ID</th> 
+                            <th scope="row">NAME</th> 
                             <th scope="row">EMAIL</th>
-                            <th scope="row">TEMP PASSWORD</th>
+                            <th scope="row">GENDER</th>
+                            <th scope="row">STUDENT STATUS</th>
                             <th scope="row" style={{width:'auto'}}>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.tempUsers.map((tempUsers,index)=>(
+                        {this.state.students.map((students,index)=>(
                             <tr>
                                 
                                 <td>{index+1}</td>
-                                <td>{tempUsers.email}</td>
-                                <td>{tempUsers.password}</td>
-                                <td>
-                                   <button  className='btn btn-warning' style={{backgroundColor:'rgb(17, 100, 6)'}}><a href="#" style={{color:'white',textDecoration:'none', fontWeight:'bold'}}>
-                                        <i className='fas fa-edit'></i>
-                                        &nbsp;UPDATE
-                                    </a>
-                                    </button><br/>
-                                    {/* href={`/edit/submissions/${submissions._id}` */}
+                                <td>{students.studentId}</td>
+                                <td>{students.studentName}</td>
+                                <td>{students.email}</td>
+                                <td>{students.gender}</td>
+                                <td>{students.studentStatus}</td>
+                                <td>                             
 
-                                    {/* <a className ="btn btn-danger" href="#" onClick={() => this.onDelete(submissions._id)} style={{ backgroundColor:'rgb(158, 7, 7)', textDecoration: "none", color: "white" ,marginTop:'5px'}}
+                                    <a className ="btn btn-danger" href="#" onClick={() => this.onDelete(students._id)} style={{ backgroundColor:'rgb(158, 7, 7)', textDecoration: "none", color: "white" ,marginTop:'5px'}}
                                         >
                                         <i className='fas fa-trash-alt'></i>
                                         &nbsp;REMOVE
-                                    </a> */}
+                                    </a>
                                 </td>
                             </tr>
                         ))}
@@ -161,7 +168,7 @@ export default class Home extends Component {
            
         </div>
         <br/></div>
-        {/* <Footer/> */}
+
         </div>
 
     )
